@@ -1,0 +1,40 @@
+---
+title: "Seminar 6 Chi-Square test"
+author: "Mengling Xu"
+date: "2025-03-10"
+output: html_document
+---
+
+```{r setup}
+library(dplyr)
+library(readr)
+library(ggplot2)
+
+options(scipen = 999)
+
+bes_2017 <- read_csv('../data/BES-2017-f2f-gender-fb-tw.csv')
+```
+
+# Gender and Facebook use
+There is a stereotype that women are more sociable than men. Therefore we expect women to be more likely than men to have Facebook accounts.
+
+H1 Gender is associated with Facebook use
+(H0 Gender is not associated with Facebook use)
+
+```{r visualisation}
+bes_2017 %>%
+  ggplot(aes(x = Gender, fill = Use_Facebook)) +
+  geom_bar(position = 'dodge')
+```
+
+```{r significance-test}
+chisq.test(
+  x = bes_2017$Gender,
+  y = bes_2017$Use_Facebook
+)
+```
+
+# Gender and Twitter use
+
+Homework!
+
